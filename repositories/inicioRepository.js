@@ -24,7 +24,7 @@ export default class inicioRepository {
         for(let i=0; i<rows.length; i++) {
             let row = rows[i];
             lista.push(
-                new UsuarioEntity(row["usu_id"], row["usu_nome"]
+                new UsuarioEntity(row["usu_id"], row["usu_nome"])
             );
         }
 

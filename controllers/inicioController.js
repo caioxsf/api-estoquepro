@@ -1,6 +1,6 @@
-import inicioController from "../repositories/inicioController.js"
+import inicioRepository from "../repositories/inicioRepository.js"
 
-export default class inicioController.js {
+export default class inicioController {
 
     #repository
     constructor() {
@@ -17,7 +17,7 @@ export default class inicioController.js {
             let {nome} = req.body;
             if(nome) {
                 let entidade = new UsuarioEntity(0, nome);
-                if(await this.#repo.cadastrar(entidade))
+                if(await this.#repository.cadastrar(entidade))
                     return res.status(201).json({msg: "Usuário cadastrado com sucesso!"});
                 else
                     throw new Error("Erro ao inserir usuário no banco de dados");
@@ -32,7 +32,7 @@ export default class inicioController.js {
 
     async obter(req, res) {
         let {codigo} = req.params;
-        var lista = await this.#repo.obter(codigo);
+        var lista = await this.#repository.obter(codigo);
         if(lista.length == 0)
             return res.status(404).json({msg: "Usuário não encontrado!"});
 
@@ -45,7 +45,7 @@ export default class inicioController.js {
         if(id > 0 && nome) {
             entidade.nome = nome;
             entidade.id = id;
-            if(await this.#repo.alterar(entidade))
+            if(await this.#repository.alterar(entidade))
                 return res.status(200).json({msg: "Usuário alterado com sucesso!"});
             else
                 throw new Error("Erro ao alterar usuário no banco de dados");
@@ -57,7 +57,7 @@ export default class inicioController.js {
 
     async excluir(req, res) {
         let {codigo} = req.params;
-        if(await this.#repo.excluir(codigo))
+        if(await this.#repository.excluir(codigo))
             return res.status(200).json({msg: "Usuário excluído com sucesso!"});
         else
             throw new Error("Erro ao excluir usuário do banco de dados!");

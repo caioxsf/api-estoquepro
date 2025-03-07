@@ -75,4 +75,14 @@ export default class clienteRepository {
         let resultado = await this.#banco.ExecutaComandoNonQuery(sql, parametros);
         return resultado;
     }
+
+    async alterar (entidade) { 
+        let sql = ` UPDATE clientes SET cli_nome = ?, cli_cpf = ?, cli_telefone = ?, cli_email = ?, cli_cep = ?, 
+                    cli_rua = ?, cli_bairro = ?, cli_cidade = ?, cli_estado = ?, cli_numero_casa = ? WHERE cli_id = ?`;
+        let parametros = [  entidade.nome, entidade.cpf, entidade.telefone, entidade.email, entidade.cep, entidade.rua, 
+                            entidade.bairro,  entidade.cidade, entidade.estado, entidade.numero, entidade.id];
+        
+        let resultado = await this.#banco.ExecutaComandoNonQuery(sql, parametros);
+        return resultado;
+    }
 }

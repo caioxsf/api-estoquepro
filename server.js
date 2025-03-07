@@ -8,6 +8,7 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const outputJson = require("./swagger-output.json");
 import swaggerUi from 'swagger-ui-express';
+import { errorHandler, catchErrors } from './middlewares/exeptionMiddleware.js';
 
 const app = express();
 app.use(express.json());
@@ -16,7 +17,9 @@ app.use(express.json());
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(outputJson));
 // app.use('/teste', testeRoute);
 
-app.use('/', clienteRoute);
+app.use('/', catchErrors(clienteRoute));
+
+app.use(errorHandler);
 
 app.listen(5000, function() {
     console.log("backend em execução");

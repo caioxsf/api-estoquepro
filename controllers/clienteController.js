@@ -57,4 +57,29 @@ export default class clienteController {
         
     }
 
+    async alterar (req,res) {
+        let entidade = new clienteEntity();
+        let {id, nome, cpf, telefone, email, cep, rua, bairro, cidade, estado, numero} = req.body;
+
+        if(id > 0 && nome && cpf && telefone && email && cep && rua && bairro && cidade && estado && numero > 0) {
+            entidade.id = id;
+            entidade.nome = nome;
+            entidade.cpf = cpf;
+            entidade.telefone = telefone;
+            entidade.email = email;
+            entidade.cep = cep;
+            entidade.rua = rua;
+            entidade.bairro = bairro;
+            entidade.cidade = cidade;
+            entidade.estado = estado;
+            entidade.numero = numero;
+            if (await this.#repo.alterar(entidade)) 
+                return res.status(200).json({msg: "Cliente alterado com sucesso!"});
+            else
+                throw new Error("Erro ao alterar cliente!");
+        } else {
+            return res.status(400).json({msg: "Parametros inválidos!"});
+        }
+    }
+
 }

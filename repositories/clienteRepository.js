@@ -68,4 +68,11 @@ export default class clienteRepository {
         }
         return null;
     }
+
+    async excluir (id) {
+        let sql = `DELETE FROM clientes WHERE cli_id = ?`;
+        let parametros = [id];
+        let resultado = await this.#banco.ExecutaComandoNonQuery(sql, parametros);
+        return resultado;
+    }
 }

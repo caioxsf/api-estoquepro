@@ -29,7 +29,10 @@ export default class clienteController {
 
     async listar (req,res) {
         let listaClientes = await this.#repo.listar();
-        res.status(200).json(listaClientes);
+        if(listaClientes.length === 0)
+            return res.status(404).json({msg: "Nenhum cliente foi encontrado!"});
+
+        return res.status(200).json(listaClientes);
     }
 
     async obter (req, res) {
@@ -38,6 +41,20 @@ export default class clienteController {
         if(lista.length === 0)
             return res.status(404).json({msg: "Cliente não encontrado!"});
         return res.status(200).json(lista);
+    }
+
+    async excluir (req,res) {
+        let {id} = req.params;
+        if(await this.#repo.obter(id)) {
+            let resultado = await this.#repo.excluir(id);
+            if(resultado)
+                return res.status(200).json({msg: "Cliente excluído com sucesso!"});
+            else
+                throw new Error("Erro ao excluir cliente!");
+        } else {
+            res.status(404).json({msg: "Cliente não encontrado!"});
+        }
+        
     }
 
 }

@@ -24,4 +24,10 @@ router.get('/clientes/obter/:id', (req,res) => {
     ctrl.obter(req,res);
 })
 
+router.delete('/clientes/excluir/:id', (req,res) => {
+    // #swagger.tags = ['Clientes']
+    // #swagger.summary = "Endpoint para excluir um cliente"
+    ctrl.excluir(req,res);
+})
+
 export default router;

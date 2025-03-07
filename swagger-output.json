@@ -21,6 +21,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -89,6 +92,33 @@
           "Clientes"
         ],
         "summary": "Endpoint para obter um cliente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/clientes/excluir/{id}": {
+      "delete": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Endpoint para excluir um cliente",
         "description": "",
         "parameters": [
           {

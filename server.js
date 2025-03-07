@@ -3,6 +3,7 @@ import express from 'express'
 // Rotas
 // import testeRoute from './routes/testeRoute.js';
 import clienteRoute from './routes/clienteRoute.js';
+import produtoRoute from './routes/produtoRoute.js'
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -18,6 +19,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(outputJson));
 // app.use('/teste', testeRoute);
 
 app.use('/', catchErrors(clienteRoute));
+app.use('/', catchErrors(produtoRoute))
 
 app.use(errorHandler);
 

@@ -200,6 +200,63 @@
           }
         }
       }
+    },
+    "/produtos/cadastrar": {
+      "post": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Endpoint para cadastrar produtos",
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "codigo": {
+                    "example": "any"
+                  },
+                  "nome": {
+                    "example": "any"
+                  },
+                  "preco": {
+                    "example": "any"
+                  },
+                  "estoque": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/produtos/listar": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Endpoint para listar produtos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   }
 }

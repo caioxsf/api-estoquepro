@@ -80,4 +80,18 @@ export default class produtoRepository {
         return resultado;
     }
 
+    async alterar (entidade) {
+        let sql = `UPDATE produtos SET prod_codigo = ?, prod_nome = ?, prod_preco = ?, prod_estoque = ? WHERE prod_id = ?`;
+        let parametros = [
+            entidade.codigo,
+            entidade.nome,
+            entidade.preco,
+            entidade.estoque,
+            entidade.id
+        ];
+
+        let resultado = await this.#banco.ExecutaComandoNonQuery(sql,parametros);
+        return resultado;
+    }
+
 }

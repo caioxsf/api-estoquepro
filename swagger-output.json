@@ -258,6 +258,49 @@
         }
       }
     },
+    "/produtos/atualizar": {
+      "put": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Endpoint para atualizar produtos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "example": "any"
+                  },
+                  "codigo": {
+                    "example": "any"
+                  },
+                  "nome": {
+                    "example": "any"
+                  },
+                  "preco": {
+                    "example": "any"
+                  },
+                  "estoque": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/produtos/obter/{id}": {
       "get": {
         "tags": [

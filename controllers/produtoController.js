@@ -57,7 +57,25 @@ export default class produtoController {
         } else {
             res.status(404).json({msg: "Produto não encontrado!"});
         }
-        
+    }
+
+    async alterar (req,res) {
+        let entidade = new produtoEntity();
+        let {id, codigo, nome, preco, estoque} = req.body;
+        if(id && codigo && nome && preco && estoque) {
+            entidade.id = id;
+            entidade.codigo = codigo;
+            entidade.nome = nome;
+            entidade.preco = preco;
+            entidade.estoque = estoque;
+
+            if(await this.#repo.alterar(entidade))
+                return res.status(200).json({msg: "Produto alterado com sucesso!"})
+            else
+                throw new Error("Erro ao alterar produto!");
+        } else {
+            return res.status(400).json({msg: "Parametros inválidos!"});
+        }
     }
 
 }

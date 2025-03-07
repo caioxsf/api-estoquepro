@@ -19,6 +19,12 @@ router.get('/produtos/listar', (req,res) => {
     ctrl.listar(req,res);
 })
 
+router.put('/produtos/atualizar', (req,res) => {
+    // #swagger.tags = ['Produtos']
+    // #swagger.summary = "Endpoint para atualizar produtos"
+    ctrl.alterar(req,res);
+})
+
 router.get('/produtos/obter/:id', (req,res) => {
     // #swagger.tags = ['Produtos']
     // #swagger.summary = "Endpoint para obter as informações de um produto específico"

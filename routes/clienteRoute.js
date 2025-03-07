@@ -18,4 +18,10 @@ router.post('/clientes/cadastrar', (req,res) => {
     ctrl.cadastrar(req,res);
 });
 
+router.get('/clientes/obter/:id', (req,res) => {
+    // #swagger.tags = ['Clientes']
+    // #swagger.summary = "Endpoint para obter um cliente"
+    ctrl.obter(req,res);
+})
+
 export default router;

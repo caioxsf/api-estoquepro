@@ -82,6 +82,33 @@
           }
         }
       }
+    },
+    "/clientes/obter/{id}": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Endpoint para obter um cliente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   }
 }

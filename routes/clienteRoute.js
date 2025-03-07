@@ -1,15 +1,21 @@
 import express from 'express'
-
+import ClienteController from '../controllers/clienteController.js';
 import AuthMiddleware from '../middlewares/authMiddleware.js';
 const router = express.Router();
 
-
+let ctrl = new ClienteController();
 let authMiddleware = new AuthMiddleware();
 
-router.get('/', (req,res) => {
-    // #swagger.tags = ['Tabela FIPE']
-    // #swagger.summary = "Endpoint para listar marcas de carros"
-    ctrl.listarMarca(req,res);
+router.get('/clientes/listar', (req,res) => {
+    // #swagger.tags = ['Clientes']
+    // #swagger.summary = "Endpoint para listar todos os clientes"
+    ctrl.listar(req,res);
+})
+
+router.post('/clientes/cadastrar', (req,res) => {
+    // #swagger.tags = ['Clientes']
+    // #swagger.summary = "Endpoint para cadastrar um cliente"
+    ctrl.cadastrar(req,res);
 });
 
 export default router;

@@ -1,7 +1,7 @@
 import express from 'express'
 
 // Rotas
-import testeRoute from './routes/testeRoute.js';
+// import testeRoute from './routes/testeRoute.js';
 import clienteRoute from './routes/clienteRoute.js';
 
 import { createRequire } from "module";
@@ -14,9 +14,9 @@ app.use(express.json());
 
 //página de documentação
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(outputJson));
-app.use('/teste', testeRoute);
+// app.use('/teste', testeRoute);
 
-app.use('/clientes', clienteRoute);
+app.use('/', clienteRoute);
 
 app.listen(5000, function() {
     console.log("backend em execução");

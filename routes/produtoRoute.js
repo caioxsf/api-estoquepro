@@ -19,4 +19,16 @@ router.get('/produtos/listar', (req,res) => {
     ctrl.listar(req,res);
 })
 
+router.get('/produtos/obter/:id', (req,res) => {
+    // #swagger.tags = ['Produtos']
+    // #swagger.summary = "Endpoint para obter as informações de um produto específico"
+    ctrl.obter(req,res);
+})
+
+router.delete('/produtos/excluir/:id', (req,res) => {
+    // #swagger.tags = ['Produtos']
+    // #swagger.summary = "Endpoint para excluir um produto específico"
+    ctrl.excluir(req,res); 
+})
+
 export default router;

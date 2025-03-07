@@ -40,7 +40,8 @@ export default class clienteController {
         const lista = await this.#repo.obter(id) || [];
         if(lista.length === 0)
             return res.status(404).json({msg: "Cliente não encontrado!"});
-        return res.status(200).json(lista);
+        else
+            return res.status(200).json(lista);
     }
 
     async excluir (req,res) {

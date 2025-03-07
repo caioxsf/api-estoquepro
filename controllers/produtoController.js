@@ -37,6 +37,27 @@ export default class produtoController {
             res.status(200).json(listaProdutos);  
     }
 
+    async obter (req,res) {
+        let {id} = req.params;
+        const lista = await this.#repo.obter(id) || [];
+        if(lista.length === 0)  
+            return res.status(404).json({msg: "Produto não encontrado!"});
+        else 
+            return res.status(200).json(lista);
+    }
 
+    async excluir (req,res) {
+        let {id} = req.params;
+        if(await this.#repo.obter(id)) {
+            let resultado = await this.#repo.excluir(id);
+            if(resultado)
+                return res.status(200).json({msg: "Produto excluído com sucesso!"});
+            else
+                throw new Error("Erro ao excluir produto!");
+        } else {
+            res.status(404).json({msg: "Produto não encontrado!"});
+        }
+        
+    }
 
 }

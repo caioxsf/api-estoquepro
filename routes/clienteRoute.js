@@ -18,16 +18,17 @@ router.post('/clientes/cadastrar', (req,res) => {
     ctrl.cadastrar(req,res);
 });
 
-router.get('/clientes/obter/:id', (req,res) => {
-    // #swagger.tags = ['Clientes']
-    // #swagger.summary = "Endpoint para obter um cliente"
-    ctrl.obter(req,res);
-});
-
 router.put('/clientes/alterar', (req,res) => {
     // #swagger.tags = ['Clientes']
     // #swagger.summary = "Endpoint para alterar um cliente"
     ctrl.alterar(req,res);
+});
+
+
+router.get('/clientes/obter/:id', (req,res) => {
+    // #swagger.tags = ['Clientes']
+    // #swagger.summary = "Endpoint para obter um cliente"
+    ctrl.obter(req,res);
 });
 
 router.delete('/clientes/excluir/:id', (req,res) => {

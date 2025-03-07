@@ -55,4 +55,29 @@ export default class produtoRepository {
         return lista;
     }
 
+    async obter (id) {
+        let sql = `SELECT * FROM produtos WHERE prod_id = ?`;
+        let parametros = [id];
+        let rows = await this.#banco.ExecutaComando(sql,parametros);
+
+        if(rows.length > 0) {
+            let row = rows[0];
+            return new produtoEntity(
+                row['prod_id'],
+                row['prod_codigo'],
+                row['prod_nome'],
+                row['prod_preco'],
+                row['prod_estoque']
+            );
+        }
+        return null;
+    }
+
+    async excluir (id) {
+        let sql = `DELETE FROM produtos WHERE prod_id = ?`;
+        let parametros = [id];
+        let resultado = await this.#banco.ExecutaComandoNonQuery(sql, parametros);
+        return resultado;
+    }
+
 }

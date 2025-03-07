@@ -86,33 +86,6 @@
         }
       }
     },
-    "/clientes/obter/{id}": {
-      "get": {
-        "tags": [
-          "Clientes"
-        ],
-        "summary": "Endpoint para obter um cliente",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
     "/clientes/alterar": {
       "put": {
         "tags": [
@@ -170,6 +143,33 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/clientes/obter/{id}": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Endpoint para obter um cliente",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -248,6 +248,60 @@
         ],
         "summary": "Endpoint para listar produtos",
         "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/produtos/obter/{id}": {
+      "get": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Endpoint para obter as informações de um produto específico",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/produtos/excluir/{id}": {
+      "delete": {
+        "tags": [
+          "Produtos"
+        ],
+        "summary": "Endpoint para excluir um produto específico",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

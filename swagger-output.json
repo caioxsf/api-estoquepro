@@ -354,6 +354,47 @@
           }
         }
       }
+    },
+    "/pedidos/cadastrar": {
+      "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "summary": "Endpoint para cadastrar pedidos",
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "produto_id": {
+                      "type": "string"
+                    },
+                    "quantidade": {
+                      "type": "string"
+                    },
+                    "preco": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

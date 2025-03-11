@@ -42,6 +42,13 @@ export default class vendaController {
             return res.status(400).json({msg: "Erro ao cadastrar pedido"});
             
     }
+
+    async listarVendas (req,res) {
+        let lista = await this.#itensVendaRepo.listarVendas();
+        if(lista.length === 0)
+            return res.status(404).json({msg: "Nenhuma venda foi encontrada!"});
+        return res.status(200).json(lista); 
+    }
     
 }
 

@@ -33,4 +33,23 @@ export default class itensVendaRepository {
         return null
     }
 
+    async listarVendas () {
+        let sql = `SELECT * FROM itens_venda`;
+        let rows = await this.#banco.ExecutaComando(sql);
+        let lista = [];
+
+        for (let i=0;i<rows.length;i++) {
+            let row = rows[i];
+            lista.push(new itensVendaEntity(
+                row['item_id'],
+                row['ven_id'],
+                row['prod_id'],
+                row['item_qtd'],
+                row['item_preco'],
+                row['item_subtotal']
+            ))
+        }
+        return lista;
+    }
+
 }

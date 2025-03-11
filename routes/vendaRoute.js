@@ -33,4 +33,10 @@ router.post('/vendas/cadastrar', (req, res) => {
     ctrl.cadastrarVenda(req, res);
 });
 
+router.get('/vendas/listar', (req,res) => {
+    // #swagger.tags = ['Vendas']
+    // #swagger.summary = "Endpoint para listar todas as vendas"
+    ctrl.listarVendas(req,res);
+})
+
 export default router;

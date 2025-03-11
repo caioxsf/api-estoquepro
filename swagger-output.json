@@ -395,6 +395,23 @@
           }
         }
       }
+    },
+    "/vendas/listar": {
+      "get": {
+        "tags": [
+          "Vendas"
+        ],
+        "summary": "Endpoint para listar todas as vendas",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   }
 }

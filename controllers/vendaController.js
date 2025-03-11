@@ -22,7 +22,6 @@ export default class vendaController {
 
         for (let i=0;i<req.body.length;i++) {
             const entidade = new this.#itensVendaEntity();
-            const produtoRepo = new produtoRepository();
             let {quantidade, preco, produto_id} = req.body[i];
 
             entidade.venda_id = vendaId;
@@ -31,12 +30,7 @@ export default class vendaController {
             entidade.preco = parseFloat(preco);
             entidade.subtotal = entidade.quantidade * entidade.preco;
 
-            if(await produtoRepo.verificarCodigoExistenteDoProdutoParaVendas(produto_id)) {
-                cont++;
-                await this.#itensVendaRepo.cadastrarPedido(entidade);
-            } else {
-                return res.status(404).json({msg: "Código do produto inexistente!"})
-            }
+            await this.#itensVendaRepo.cadastrarPedido(entidade);
             
         }  
         if (cont > 0)

@@ -10,49 +10,11 @@ export default class produtoRepository {
     }
 
     async cadastrar (entidade) {
-        let sql = ` INSERT INTO produtos (prod_codigo, prod_nome, prod_preco, prod_estoque)
-                    VALUES (?, ?, ?, ?)`;
-        let parametros = [entidade.codigo, entidade.nome, entidade.preco, entidade.estoque];
+        let sql = ` INSERT INTO produtos ( prod_nome, prod_preco, prod_estoque)
+                    VALUES (?, ?, ?)`;
+        let parametros = [entidade.nome, entidade.preco, entidade.estoque];
         let resultado = await this.#banco.ExecutaComandoNonQuery(sql,parametros);
         return resultado;
-    }
-
-    async verificarCodigoExistenteDoProduto (entidade) {
-        let sql = `SELECT * FROM produtos WHERE prod_codigo = ?`
-        let parametros = [entidade.codigo];
-        let rows = await this.#banco.ExecutaComando(sql,parametros);
-
-        if(rows.length > 0) {
-            let row = rows[0];
-            return new produtoEntity(
-                row['prod_id'],
-                row['prod_codigo'],
-                row['prod_nome'],
-                row['prod_preco'],
-                row['prod_estoque']
-            )
-        }
-
-        return null;
-    }
-
-    async verificarCodigoExistenteDoProdutoParaVendas (codigo) {
-        let sql = `SELECT * FROM produtos WHERE prod_codigo = ?`
-        let parametros = [codigo];
-        let rows = await this.#banco.ExecutaComando(sql,parametros);
-
-        if(rows.length > 0) {
-            let row = rows[0];
-            return new produtoEntity(
-                row['prod_id'],
-                row['prod_codigo'],
-                row['prod_nome'],
-                row['prod_preco'],
-                row['prod_estoque']
-            )
-        }
-
-        return null;
     }
 
     async listar () {
@@ -64,7 +26,6 @@ export default class produtoRepository {
             let row = rows[i];
             lista.push( new produtoEntity(
                 row['prod_id'],
-                row['prod_codigo'],
                 row['prod_nome'],
                 row['prod_preco'],
                 row['prod_estoque']
@@ -83,7 +44,6 @@ export default class produtoRepository {
             let row = rows[0];
             return new produtoEntity(
                 row['prod_id'],
-                row['prod_codigo'],
                 row['prod_nome'],
                 row['prod_preco'],
                 row['prod_estoque']
@@ -100,9 +60,8 @@ export default class produtoRepository {
     }
 
     async alterar (entidade) {
-        let sql = `UPDATE produtos SET prod_codigo = ?, prod_nome = ?, prod_preco = ?, prod_estoque = ? WHERE prod_id = ?`;
+        let sql = `UPDATE produtos SET prod_nome = ?, prod_preco = ?, prod_estoque = ? WHERE prod_id = ?`;
         let parametros = [
-            entidade.codigo,
             entidade.nome,
             entidade.preco,
             entidade.estoque,

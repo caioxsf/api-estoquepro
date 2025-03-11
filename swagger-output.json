@@ -222,9 +222,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "codigo": {
-                    "example": "any"
-                  },
                   "nome": {
                     "example": "any"
                   },
@@ -368,9 +365,6 @@
           },
           "400": {
             "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
           }
         },
         "requestBody": {

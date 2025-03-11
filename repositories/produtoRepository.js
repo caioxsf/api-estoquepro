@@ -36,6 +36,25 @@ export default class produtoRepository {
         return null;
     }
 
+    async verificarCodigoExistenteDoProdutoParaVendas (codigo) {
+        let sql = `SELECT * FROM produtos WHERE prod_codigo = ?`
+        let parametros = [codigo];
+        let rows = await this.#banco.ExecutaComando(sql,parametros);
+
+        if(rows.length > 0) {
+            let row = rows[0];
+            return new produtoEntity(
+                row['prod_id'],
+                row['prod_codigo'],
+                row['prod_nome'],
+                row['prod_preco'],
+                row['prod_estoque']
+            )
+        }
+
+        return null;
+    }
+
     async listar () {
         let sql = `SELECT * FROM produtos`;
         let rows = await this.#banco.ExecutaComando(sql);

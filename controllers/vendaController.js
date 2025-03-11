@@ -1,5 +1,7 @@
 import itensVendaEntity from "../entities/itensVendaEntity.js";
+import produtoEntity from "../entities/produtoEntity.js";
 import itensVendaRepository from "../repositories/itensVendaRepository.js";
+import produtoRepository from "../repositories/produtoRepository.js";
 import vendaRepository from "../repositories/vendaRepository.js"
 
 export default class vendaController {
@@ -20,14 +22,22 @@ export default class vendaController {
 
         for (let i=0;i<req.body.length;i++) {
             const entidade = new this.#itensVendaEntity();
+            const produtoRepo = new produtoRepository();
             let {quantidade, preco, produto_id} = req.body[i];
+
             entidade.venda_id = vendaId;
             entidade.produto_id = parseInt(produto_id);
             entidade.quantidade = parseInt(quantidade);
             entidade.preco = parseFloat(preco);
             entidade.subtotal = entidade.quantidade * entidade.preco;
-            cont++;
-            await this.#itensVendaRepo.cadastrarPedido(entidade);
+
+            if(await produtoRepo.verificarCodigoExistenteDoProdutoParaVendas(produto_id)) {
+                cont++;
+                await this.#itensVendaRepo.cadastrarPedido(entidade);
+            } else {
+                return res.status(404).json({msg: "Código do produto inexistente!"})
+            }
+            
         }  
         if (cont > 0)
             return res.status(201).json({msg: "Pedido cadastrado com sucesso!"})

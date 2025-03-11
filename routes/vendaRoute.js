@@ -7,9 +7,9 @@ const router = express.Router();
 let ctrl = new vendaController();
 let authMiddleware = new AuthMiddleware();
 
-router.post('/pedidos/cadastrar', (req, res) => {
-    // #swagger.tags = ['Pedidos']
-    // #swagger.summary = "Endpoint para cadastrar pedidos"
+router.post('/vendas/cadastrar', (req, res) => {
+    // #swagger.tags = ['Vendas']
+    // #swagger.summary = "Endpoint para cadastrar vendas"
     /* 
     #swagger.requestBody = {
         required: true,
@@ -30,7 +30,7 @@ router.post('/pedidos/cadastrar', (req, res) => {
         }
     }
     */
-    ctrl.cadastrarPedido(req, res);
+    ctrl.cadastrarVenda(req, res);
 });
 
 export default router;

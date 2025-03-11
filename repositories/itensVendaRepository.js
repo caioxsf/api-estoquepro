@@ -8,7 +8,7 @@ export default class itensVendaRepository {
         this.#banco = new Database();
     }
 
-    async cadastrarPedido (entidade) {
+    async cadastrarVenda (entidade) {
         let sql = `INSERT INTO itens_venda (ven_id, prod_id, item_qtd, item_preco, item_subtotal) VALUES (?, ?, ?, ?, ?)`;
         let parametros = [entidade.venda_id, entidade.produto_id, entidade.quantidade, entidade.preco, entidade.subtotal];
         let resultado = await this.#banco.ExecutaComandoNonQuery(sql,parametros);
@@ -32,4 +32,5 @@ export default class itensVendaRepository {
         }
         return null
     }
+
 }

@@ -352,12 +352,12 @@
         }
       }
     },
-    "/pedidos/cadastrar": {
+    "/vendas/cadastrar": {
       "post": {
         "tags": [
-          "Pedidos"
+          "Vendas"
         ],
-        "summary": "Endpoint para cadastrar pedidos",
+        "summary": "Endpoint para cadastrar vendas",
         "description": "",
         "responses": {
           "201": {

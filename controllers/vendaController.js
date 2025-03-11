@@ -15,9 +15,9 @@ export default class vendaController {
         this.#itensVendaEntity = itensVendaEntity;
     }
 
-    async cadastrarPedido(req, res) {
+    async cadastrarVenda(req, res) {
         
-        let vendaId = await this.#vendaRepo.gerarPedido();
+        let vendaId = await this.#vendaRepo.gerarVenda();
         let cont = 0;
 
         for (let i=0;i<req.body.length;i++) {
@@ -31,7 +31,7 @@ export default class vendaController {
                 entidade.preco = parseFloat(preco);
                 entidade.subtotal = entidade.quantidade * entidade.preco;
     
-                await this.#itensVendaRepo.cadastrarPedido(entidade);
+                await this.#itensVendaRepo.cadastrarVenda(entidade);
                 cont++;
             } else 
                 return res.status(404).json({msg: "Código do produto inexistente!"});

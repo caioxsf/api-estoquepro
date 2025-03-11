@@ -7,7 +7,7 @@ export default class vendaRepository {
         this.#banco = new Database();
     }
 
-    async gerarPedido() {
+    async gerarVenda() {
         let sql = `INSERT INTO vendas (ven_hora) VALUES (NOW())`;
         let valores = [];
         let resultado = await this.#banco.ExecutaComandoLastInserted(sql,valores);

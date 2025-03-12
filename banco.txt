@@ -1,0 +1,44 @@
+CREATE TABLE `clientes` (
+  `cli_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cli_nome` varchar(50) DEFAULT NULL,
+  `cli_cpf` varchar(20) DEFAULT NULL,
+  `cli_telefone` varchar(20) DEFAULT NULL,
+  `cli_email` varchar(50) DEFAULT NULL,
+  `cli_cep` varchar(15) DEFAULT NULL,
+  `cli_rua` varchar(100) DEFAULT NULL,
+  `cli_bairro` varchar(50) DEFAULT NULL,
+  `cli_cidade` varchar(50) DEFAULT NULL,
+  `cli_estado` varchar(50) DEFAULT NULL,
+  `cli_numero_casa` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cli_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `itens_venda` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ven_id` int(11) NOT NULL,
+  `prod_id` int(11) NOT NULL,
+  `item_qtd` int(11) NOT NULL,
+  `item_preco` decimal(10,2) DEFAULT NULL,
+  `item_subtotal` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`item_id`),
+  KEY `ven_id` (`ven_id`),
+  KEY `prod_id` (`prod_id`),
+  CONSTRAINT `itens_venda_ibfk_1` FOREIGN KEY (`ven_id`) REFERENCES `vendas` (`ven_id`),
+  CONSTRAINT `itens_venda_ibfk_2` FOREIGN KEY (`prod_id`) REFERENCES `produtos` (`prod_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+CREATE TABLE `produtos` (
+  `prod_id` int(11) NOT NULL AUTO_INCREMENT,
+  `prod_codigo` int(11) DEFAULT NULL,
+  `prod_nome` varchar(50) DEFAULT NULL,
+  `prod_preco` decimal(10,2) DEFAULT NULL,
+  `prod_estoque` int(11) DEFAULT NULL,
+  PRIMARY KEY (`prod_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
+
+vendas, CREATE TABLE `vendas` (
+  `ven_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ven_hora` datetime NOT NULL DEFAULT current_timestamp(),
+  `ven_total` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`ven_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci

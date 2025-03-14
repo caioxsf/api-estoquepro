@@ -11,7 +11,7 @@
     }
   ],
   "paths": {
-    "/clientes/listar": {
+    "/clientes": {
       "get": {
         "tags": [
           "Clientes"
@@ -26,9 +26,7 @@
             "description": "Not Found"
           }
         }
-      }
-    },
-    "/clientes/cadastrar": {
+      },
       "post": {
         "tags": [
           "Clientes"
@@ -84,9 +82,7 @@
             }
           }
         }
-      }
-    },
-    "/clientes/alterar": {
+      },
       "put": {
         "tags": [
           "Clientes"
@@ -147,7 +143,7 @@
         }
       }
     },
-    "/clientes/obter/{id}": {
+    "/clientes/{id}": {
       "get": {
         "tags": [
           "Clientes"
@@ -172,9 +168,7 @@
             "description": "Not Found"
           }
         }
-      }
-    },
-    "/clientes/excluir/{id}": {
+      },
       "delete": {
         "tags": [
           "Clientes"
@@ -201,7 +195,7 @@
         }
       }
     },
-    "/produtos/cadastrar": {
+    "/produtos": {
       "post": {
         "tags": [
           "Produtos"
@@ -236,9 +230,7 @@
             }
           }
         }
-      }
-    },
-    "/produtos/listar": {
+      },
       "get": {
         "tags": [
           "Produtos"
@@ -253,9 +245,7 @@
             "description": "Not Found"
           }
         }
-      }
-    },
-    "/produtos/atualizar": {
+      },
       "put": {
         "tags": [
           "Produtos"
@@ -298,7 +288,7 @@
         }
       }
     },
-    "/produtos/obter/{id}": {
+    "/produtos/{id}": {
       "get": {
         "tags": [
           "Produtos"
@@ -323,9 +313,7 @@
             "description": "Not Found"
           }
         }
-      }
-    },
-    "/produtos/excluir/{id}": {
+      },
       "delete": {
         "tags": [
           "Produtos"
@@ -352,7 +340,7 @@
         }
       }
     },
-    "/vendas/cadastrar": {
+    "/vendas": {
       "post": {
         "tags": [
           "Vendas"
@@ -394,9 +382,7 @@
             }
           }
         }
-      }
-    },
-    "/vendas/listar": {
+      },
       "get": {
         "tags": [
           "Vendas"

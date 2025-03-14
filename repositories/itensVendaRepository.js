@@ -77,4 +77,23 @@ export default class itensVendaRepository {
         return resultado;
     }
 
+    async obterVendaInteira(id) {
+        let sql = `SELECT * FROM itens_venda WHERE ven_id = ?`;
+        let parametros = [id];
+        let rows = await this.#banco.ExecutaComando(sql,parametros);
+        let lista = [];
+        for (let i=0;i<rows.length;i++) {
+            let row = rows[i];
+            lista.push(new itensVendaEntity(
+                row['item_id'],
+                row['ven_id'],
+                row['prod_id'],
+                row['item_qtd'],
+                row['item_preco'],
+                row['item_subtotal']
+            ))
+        }
+        return lista;
+    }
+
 }

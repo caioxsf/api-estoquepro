@@ -45,10 +45,17 @@ router.get('/vendas/:id', (req,res) => {
     ctrl.obterVendaUnica(req,res);
 })
 
+router.get('/venda-inteiras/:id', (req,res) => {
+    // #swagger.tags = ['Vendas']
+    // #swagger.summary = "Endpoint para obter uma venda inteira"
+    ctrl.obterVendaInteira(req,res);
+})
+
 router.delete('/vendas/:id', (req,res) => {
     // #swagger.tags = ['Vendas']
     // #swagger.summary = "Endpoint para excluir uma venda unica"
     ctrl.excluirVendaUnica(req,res);
 })
+
 
 export default router;

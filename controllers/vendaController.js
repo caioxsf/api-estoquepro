@@ -71,6 +71,15 @@ export default class vendaController {
         else
             return res.status(200).json(lista);
     }
+
+    async obterVendaInteira(req,res) {
+        let {id} = req.params;
+        let lista = await this.#itensVendaRepo.obterVendaInteira(id) || [];
+        if(lista.length === 0)
+            return res.status(404).json({msg: "Vendas não encontrada!"});
+        else
+            return res.status(200).json(lista);
+    }
     
 }
 

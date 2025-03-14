@@ -447,6 +447,33 @@
           }
         }
       }
+    },
+    "/venda-inteiras/{id}": {
+      "get": {
+        "tags": [
+          "Vendas"
+        ],
+        "summary": "Endpoint para obter uma venda inteira",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   }
 }

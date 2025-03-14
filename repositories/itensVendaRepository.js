@@ -103,11 +103,12 @@ export default class itensVendaRepository {
         return resultado;
     }
 
-    async alterarVenda(entidade) {
-        let sql = `UPDATE itens_venda SET item_qtd = ?, item_preco = ?, item_subtotal = ? WHERE item_id = ?`;
-        let parametros = [entidade.quantidade, entidade.preco, entidade.subtotal, entidade.id]
-        let resultado = await this.#banco.ExecutaComandoNonQuery(sql, parametros);
-        return resultado;
-    }
+    // async alterarVenda(entidade) {
+    //     let sql = `UPDATE itens_venda SET item_qtd = ?, item_preco = ?, item_subtotal = ? WHERE item_id = ?`;
+    //     let parametros = [entidade.quantidade, entidade.preco, entidade.subtotal, entidade.id]
+    //     let resultado = await this.#banco.ExecutaComandoNonQuery(sql, parametros);
+    //     return resultado;
+    // }
+
 
 }

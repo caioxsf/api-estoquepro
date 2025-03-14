@@ -63,11 +63,11 @@ router.delete('/vendas-inteiras/:id', (req,res) => {
     ctrl.excluirVendaInteira(req,res);
 })
 
-router.put('/vendas', (req,res) => {
-    // #swagger.tags = ['Vendas']
-    // #swagger.summary = "Endpoint para alterar uma venda"
-    ctrl.alterarVenda(req,res);
-})
+// router.put('/vendas', (req,res) => {
+//     // #swagger.tags = ['Vendas']
+//     // #swagger.summary = "Endpoint para alterar uma venda"
+//     ctrl.alterarVenda(req,res);
+// })
 
 
 export default router;

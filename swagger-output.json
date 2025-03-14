@@ -474,6 +474,33 @@
           }
         }
       }
+    },
+    "/vendas-inteiras/{id}": {
+      "delete": {
+        "tags": [
+          "Vendas"
+        ],
+        "summary": "Endpoint para excluir uma venda inteira",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   }
 }

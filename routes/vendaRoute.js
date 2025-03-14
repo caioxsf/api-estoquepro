@@ -57,5 +57,11 @@ router.delete('/vendas/:id', (req,res) => {
     ctrl.excluirVendaUnica(req,res);
 })
 
+router.delete('/vendas-inteiras/:id', (req,res) => {
+    // #swagger.tags = ['Vendas']
+    // #swagger.summary = "Endpoint para excluir uma venda inteira"
+    ctrl.excluirVendaInteira(req,res);
+})
+
 
 export default router;

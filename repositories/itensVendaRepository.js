@@ -96,4 +96,13 @@ export default class itensVendaRepository {
         return lista;
     }
 
+    async excluirVendaInteira(id) {
+        let sql = 'DELETE FROM itens_venda WHERE ven_id = ?';
+        let parametros = [id];
+        let resultado = await this.#banco.ExecutaComandoNonQuery(sql,parametros);
+        return resultado;
+    }
+
+   
+
 }

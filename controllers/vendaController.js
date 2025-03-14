@@ -57,7 +57,7 @@ export default class vendaController {
             if(resultado)
                 return res.status(200).json({msg: "Venda excluida com sucesso!"});
             else 
-                throw new Error("Erro ao excluir cliente!");
+                throw new Error("Erro ao excluir venda!");
         } else {
             return res.status(404).json({msg: "Venda não encontrada!"});
         }
@@ -79,6 +79,19 @@ export default class vendaController {
             return res.status(404).json({msg: "Vendas não encontrada!"});
         else
             return res.status(200).json(lista);
+    }
+
+    async excluirVendaInteira(req,res) {
+        let {id} = req.params;
+        if(await this.#itensVendaRepo.obterVendaInteira(id)) {
+            let resultado = await this.#itensVendaRepo.excluirVendaInteira(id);
+            if(resultado)
+                return res.status(200).json({msg: "Vendas excluidas com sucesso!"});
+            else 
+                throw new Error("Erro ao excluir vendas!");
+        } else {
+            return res.status(404).json({msg: "Vendas não encontrada!"});
+        }
     }
     
 }

@@ -30,7 +30,7 @@ export default class vendaController {
                 entidade.quantidade = parseInt(quantidade);
                 entidade.preco = parseFloat(preco);
                 entidade.subtotal = entidade.quantidade * entidade.preco;
-    
+                await this.#itensVendaRepo.atualizarEstoque(entidade.quantidade, entidade.produto_id);
                 await this.#itensVendaRepo.cadastrarVenda(entidade);
                 cont++;
             } else 
@@ -111,6 +111,7 @@ export default class vendaController {
         }
     }
 
+    
     
 }
 

@@ -110,5 +110,11 @@ export default class itensVendaRepository {
     //     return resultado;
     // }
 
+    async atualizarEstoque(quantidade, produto_id) {
+        let sql = `UPDATE produtos set prod_estoque = prod_estoque - ? WHERE prod_id = ?`;
+        let parametros = [quantidade, produto_id];
+        let resultado = await this.#banco.ExecutaComandoNonQuery(sql,parametros);
+        return resultado;
+    }
 
 }

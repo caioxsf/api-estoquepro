@@ -49,6 +49,28 @@ export default class vendaController {
             return res.status(404).json({msg: "Nenhuma venda foi encontrada!"});
         return res.status(200).json(lista); 
     }
+
+    async excluirVendaUnica(req,res) {
+        let {id} = req.params;
+        if(await this.#itensVendaRepo.obterVendaUnica(id)) {
+            let resultado = await this.#itensVendaRepo.excluirVendaUnica(id);
+            if(resultado)
+                return res.status(200).json({msg: "Venda excluida com sucesso!"});
+            else 
+                throw new Error("Erro ao excluir cliente!");
+        } else {
+            return res.status(404).json({msg: "Venda não encontrada!"});
+        }
+    }
+
+    async obterVendaUnica(req,res) {
+        let {id} = req.params;
+        const lista = await this.#itensVendaRepo.obterVendaUnica(id) || [];
+        if(lista.length === 0)
+            return res.status(404).json({msg: "Venda não encontrada!"});
+        else
+            return res.status(200).json(lista);
+    }
     
 }
 

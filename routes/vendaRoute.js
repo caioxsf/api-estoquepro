@@ -39,4 +39,16 @@ router.get('/vendas', (req,res) => {
     ctrl.listarVendas(req,res);
 })
 
+router.get('/vendas/:id', (req,res) => {
+    // #swagger.tags = ['Vendas']
+    // #swagger.summary = "Endpoint para obter uma venda unica"
+    ctrl.obterVendaUnica(req,res);
+})
+
+router.delete('/vendas/:id', (req,res) => {
+    // #swagger.tags = ['Vendas']
+    // #swagger.summary = "Endpoint para excluir uma venda unica"
+    ctrl.excluirVendaUnica(req,res);
+})
+
 export default router;

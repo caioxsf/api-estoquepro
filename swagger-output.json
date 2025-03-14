@@ -398,6 +398,55 @@
           }
         }
       }
+    },
+    "/vendas/{id}": {
+      "get": {
+        "tags": [
+          "Vendas"
+        ],
+        "summary": "Endpoint para obter uma venda unica",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Vendas"
+        ],
+        "summary": "Endpoint para excluir uma venda unica",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   }
 }

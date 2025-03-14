@@ -52,4 +52,29 @@ export default class itensVendaRepository {
         return lista;
     }
 
+    async obterVendaUnica(id) {
+        let sql = `SELECT * FROM itens_venda WHERE item_id = ?`;
+        let parametros = [id];
+        let row = await this.#banco.ExecutaComando(sql,parametros);
+        if(row.length > 0) {
+            let rows = row[0];
+            return new itensVendaEntity(
+                rows['item_id'],
+                rows['ven_id'],
+                rows['prod_id'],
+                rows['item_qtd'],
+                rows['item_preco'],
+                rows['item_subtotal']
+            )
+        }
+        return null;
+    }
+
+    async excluirVendaUnica(id) {
+        let sql = `DELETE FROM itens_venda WHERE item_id = ?`;
+        let parametros = [id];
+        let resultado = await this.#banco.ExecutaComandoNonQuery(sql,parametros);
+        return resultado;
+    }
+
 }

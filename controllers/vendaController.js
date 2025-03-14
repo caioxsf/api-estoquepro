@@ -43,6 +43,23 @@ export default class vendaController {
             
     }
 
+    async alterarVenda(req,res) {
+        let entidade = new itensVendaEntity();
+        let {quantidade, preco, id} = req.body;
+        if(quantidade && preco && id) {
+            entidade.quantidade = parseInt(quantidade);;
+            entidade.preco = parseFloat(preco);
+            entidade.subtotal = entidade.quantidade * entidade.preco;
+            entidade.id = id;
+            if(await this.#itensVendaRepo.alterarVenda(entidade))
+                return res.status(200).json({ msg: "Venda alterada com sucesso!" })
+            else
+                throw new Error("Erro ao alterar venda!");
+        } else {
+            return res.status(400).json({ msg: "Parametros inválidos!" });
+        }
+    }
+
     async listarVendas (req,res) {
         let lista = await this.#itensVendaRepo.listarVendas();
         if(lista.length === 0)
@@ -93,6 +110,7 @@ export default class vendaController {
             return res.status(404).json({msg: "Vendas não encontrada!"});
         }
     }
+
     
 }
 

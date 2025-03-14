@@ -397,6 +397,41 @@
             "description": "Not Found"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Vendas"
+        ],
+        "summary": "Endpoint para alterar uma venda",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "quantidade": {
+                    "example": "any"
+                  },
+                  "preco": {
+                    "example": "any"
+                  },
+                  "id": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/vendas/{id}": {

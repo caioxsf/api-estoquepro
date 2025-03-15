@@ -1,5 +1,4 @@
 import itensVendaEntity from "../entities/itensVendaEntity.js";
-import produtoEntity from "../entities/produtoEntity.js";
 import itensVendaRepository from "../repositories/itensVendaRepository.js";
 import produtoRepository from "../repositories/produtoRepository.js";
 import vendaRepository from "../repositories/vendaRepository.js"
@@ -9,10 +8,12 @@ export default class vendaController {
     #vendaRepo
     #itensVendaRepo
     #itensVendaEntity
+    #produtoRepository
     constructor() {
         this.#vendaRepo = new vendaRepository();
         this.#itensVendaRepo = new itensVendaRepository();
         this.#itensVendaEntity = itensVendaEntity;
+        this.#produtoRepository = new produtoRepository(); 
     }
 
     async cadastrarVenda(req, res) {
@@ -22,14 +23,16 @@ export default class vendaController {
 
         for (let i=0;i<req.body.length;i++) {
             const entidade = new this.#itensVendaEntity();
-            let {quantidade, preco, produto_id} = req.body[i];
+            let {quantidade, produto_id} = req.body[i];
 
+            let resultado = await this.#produtoRepository.buscarPrecoDoProduto(produto_id)
+            let preco = resultado[0].prod_preco;
             entidade.produto_id = parseInt(produto_id);
             if(await this.#itensVendaRepo.verificarCodigoDoProduto(produto_id)) {
                 entidade.venda_id = vendaId;
                 entidade.quantidade = parseInt(quantidade);
                 entidade.preco = parseFloat(preco);
-                entidade.subtotal = entidade.quantidade * entidade.preco;
+                entidade.subtotal = entidade.quantidade * preco;
                 await this.#itensVendaRepo.atualizarEstoque(entidade.quantidade, entidade.produto_id);
                 await this.#itensVendaRepo.cadastrarVenda(entidade);
                 cont++;

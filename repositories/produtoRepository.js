@@ -72,4 +72,11 @@ export default class produtoRepository {
         return resultado;
     }
 
+    async buscarPrecoDoProduto(id) {
+        let sql = `SELECT prod_preco FROM produtos WHERE prod_id = ?`;
+        let parametros = [id];
+        let resultado = await this.#banco.ExecutaComando(sql,parametros);
+        return resultado;
+    }
+
 }

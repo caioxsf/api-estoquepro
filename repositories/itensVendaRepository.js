@@ -15,6 +15,7 @@ export default class itensVendaRepository {
         return resultado;
     }
 
+
     async verificarCodigoDoProduto(id) {
         let sql = `SELECT * FROM produtos WHERE prod_id = ?`;
         let parametros = [id];

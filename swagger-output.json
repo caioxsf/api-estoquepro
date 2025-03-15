@@ -372,9 +372,6 @@
                     },
                     "quantidade": {
                       "type": "string"
-                    },
-                    "preco": {
-                      "type": "string"
                     }
                   }
                 }

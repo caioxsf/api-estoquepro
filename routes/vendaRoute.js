@@ -22,7 +22,6 @@ router.post('/vendas', (req, res) => {
                         properties: {
                             produto_id: { type: "string" },
                             quantidade: { type: "string" },
-                            preco: { type: "string" }
                         }
                     }
                 }

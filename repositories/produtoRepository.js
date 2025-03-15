@@ -79,4 +79,16 @@ export default class produtoRepository {
         return resultado;
     }
 
+    async verificarEstoqueDoProduto(produto_id, quantidade) {
+        let sql = `SELECT prod_estoque FROM produtos WHERE prod_id = ? AND prod_estoque > ?`;
+        let parametros = [produto_id, quantidade];
+        let row = await this.#banco.ExecutaComando(sql, parametros);
+        for(let rows in row) {
+            return new produtoEntity(
+                rows['prod_estoque']
+            )
+        }
+        return null;
+    }
+
 }

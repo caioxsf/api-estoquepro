@@ -499,7 +499,7 @@
         }
       }
     },
-    "/relatorio/{inicio}-{fim}": {
+    "/relatorio/{inicio}/{fim}": {
       "get": {
         "description": "",
         "parameters": [

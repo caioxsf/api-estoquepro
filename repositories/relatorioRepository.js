@@ -9,27 +9,32 @@ export default class RelatorioRepository {
     }
 
     async RelatorioPeriodo(inicio, fim) {
-
-        let sql = ` SELECT prod_nome, item_qtd, item_preco, item_subtotal, ven_hora 
-                    FROM itens_venda it INNER JOIN vendas v INNER JOIN produtos p ON
-                    it.ven_id = v.ven_id AND it.prod_id = p.prod_id WHERE DATE(v.ven_hora)
-                    BETWEEN '${inicio}' AND '${fim}'`
-        let valores = [inicio,fim];
+        let sql = `SELECT it.item_id, p.prod_nome, it.item_qtd, it.item_preco, it.item_subtotal, v.ven_hora 
+                   FROM itens_venda it 
+                   INNER JOIN vendas v ON it.ven_id = v.ven_id 
+                   INNER JOIN produtos p ON it.prod_id = p.prod_id 
+                   WHERE DATE(v.ven_hora) BETWEEN ? AND ?`;
+    
+        let valores = [inicio, fim];
         let lista = [];
-        let resultado = await this.#banco.ExecutaComando(sql,valores);
-        for(let i=0;i<resultado.length;i++) {
+        
+        let resultado = await this.#banco.ExecutaComando(sql, valores);
+        
+        for (let i = 0; i < resultado.length; i++) {
             let row = resultado[i];
-            lista.push(
-                new itensVendaEntity(
-                    row['prod_nome'],
-                    row['item_qtd'],
-                    row['item_preco'],
-                    row['item_subtotal'],
-                    row['ven_hora'],
-                )
-            )
+            lista.push({
+                id: row['item_id'],          
+                venda_hora: row['ven_hora'],  
+                produto_nome: row['prod_nome'], 
+                quantidade: parseInt(row['item_qtd']), 
+                preco: parseFloat(row['item_preco']),
+                subtotal: parseFloat(row['item_subtotal'])  
+            });
         }
+        lista.unshift({quantidade: resultado.length})
+        
         return lista;
     }
+    
 
 }

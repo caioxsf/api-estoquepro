@@ -58,10 +58,9 @@ export default class produtoController {
 
     async alterar(req, res) {
         let entidade = new produtoEntity();
-        let { id, codigo, nome, preco, estoque } = req.body;
-        if (id && codigo && nome && preco && estoque) {
+        let { id, nome, preco, estoque } = req.body;
+        if (id  && nome && preco && estoque) {
             entidade.id = id;
-            entidade.codigo = codigo;
             entidade.nome = nome;
             entidade.preco = preco;
             entidade.estoque = estoque;

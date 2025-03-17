@@ -498,6 +498,37 @@
           }
         }
       }
+    },
+    "/relatorio/{inicio}-{fim}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "inicio",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fim",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   }
 }

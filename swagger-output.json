@@ -42,42 +42,11 @@
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "nome": {
-                    "example": "any"
-                  },
-                  "cpf": {
-                    "example": "any"
-                  },
-                  "telefone": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "cep": {
-                    "example": "any"
-                  },
-                  "rua": {
-                    "example": "any"
-                  },
-                  "bairro": {
-                    "example": "any"
-                  },
-                  "cidade": {
-                    "example": "any"
-                  },
-                  "estado": {
-                    "example": "any"
-                  },
-                  "numero": {
-                    "example": "any"
-                  }
-                }
+                "$ref": "#/components/schemas/clientes"
               }
             }
           }
@@ -98,45 +67,11 @@
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "example": "any"
-                  },
-                  "nome": {
-                    "example": "any"
-                  },
-                  "cpf": {
-                    "example": "any"
-                  },
-                  "telefone": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "cep": {
-                    "example": "any"
-                  },
-                  "rua": {
-                    "example": "any"
-                  },
-                  "bairro": {
-                    "example": "any"
-                  },
-                  "cidade": {
-                    "example": "any"
-                  },
-                  "estado": {
-                    "example": "any"
-                  },
-                  "numero": {
-                    "example": "any"
-                  }
-                }
+                "$ref": "#/components/schemas/clientes"
               }
             }
           }
@@ -211,21 +146,11 @@
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "nome": {
-                    "example": "any"
-                  },
-                  "preco": {
-                    "example": "any"
-                  },
-                  "estoque": {
-                    "example": "any"
-                  }
-                }
+                "$ref": "#/components/schemas/produtos"
               }
             }
           }
@@ -261,24 +186,11 @@
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "example": "any"
-                  },
-                  "nome": {
-                    "example": "any"
-                  },
-                  "preco": {
-                    "example": "any"
-                  },
-                  "estoque": {
-                    "example": "any"
-                  }
-                }
+                "$ref": "#/components/schemas/produtos"
               }
             }
           }
@@ -523,6 +435,93 @@
           },
           "404": {
             "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "clientes": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "nome": {
+            "type": "string",
+            "example": "Caio Nóbile"
+          },
+          "cpf": {
+            "type": "string",
+            "example": "471.825.538-48"
+          },
+          "telefone": {
+            "type": "string",
+            "example": "18 99865-0344"
+          },
+          "email": {
+            "type": "string",
+            "example": "caio@gmail.com"
+          },
+          "cep": {
+            "type": "string",
+            "example": "194033-332"
+          },
+          "rua": {
+            "type": "string",
+            "example": "Rua João Cesar"
+          },
+          "bairro": {
+            "type": "string",
+            "example": "Vila São João"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "Iepê"
+          },
+          "estado": {
+            "type": "string",
+            "example": "SP"
+          },
+          "numero": {
+            "type": "number",
+            "example": 211
+          }
+        }
+      },
+      "produtos": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "nome": {
+            "type": "string",
+            "example": "Caneta Azul Bic"
+          },
+          "preco": {
+            "type": "number",
+            "example": 2.5
+          },
+          "estoque": {
+            "type": "number",
+            "example": 100
+          }
+        }
+      },
+      "vendas": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1
+          },
+          "quantidade": {
+            "type": "number",
+            "example": 20
           }
         }
       }

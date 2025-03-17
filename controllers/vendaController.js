@@ -32,7 +32,7 @@ export default class vendaController {
                 // Busca o preço do produto pra fazer o subtotal direto no banco de dados
                 let resultado = await this.#produtoRepository.buscarPrecoDoProduto(produto_id)
                 let preco = resultado[0].prod_preco;
-                
+
                 entidade.venda_id = vendaId;
                 entidade.quantidade = parseInt(quantidade);
                 entidade.preco = parseFloat(preco);
@@ -47,6 +47,7 @@ export default class vendaController {
                     return res.status(400).json({ msg: `Estoque do produto ${produto_id} insuficiente!` });
                 }
             } else {
+                // Deleta a ultima venda gerada caso o código do produto for inexistente
                 await this.#vendaRepo.deletarVendaGerada(vendaId)
                 return res.status(404).json({ msg: "Código do produto inexistente!" });
             }
@@ -54,6 +55,7 @@ export default class vendaController {
         if (cont > 0)
             return res.status(201).json({ msg: "Pedido cadastrado com sucesso!" })
         else {
+            // Deleta a ultima venda gerada caso o código do produto for inexistente
             await this.#vendaRepo.deletarVendaGerada(vendaId)
             return res.status(400).json({ msg: "Erro ao cadastrar pedido" });
         }

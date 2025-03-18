@@ -10,6 +10,17 @@ let authMiddleware = new AuthMiddleware();
 router.post('/produtos', (req,res) => {
     // #swagger.tags = ['Produtos']
     // #swagger.summary = "Endpoint para cadastrar produtos"
+        /* #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/components/schemas/produtos"
+                    }
+                }
+            }
+        }
+    */
     ctrl.cadastrar(req,res);
 });
 
@@ -22,6 +33,17 @@ router.get('/produtos', (req,res) => {
 router.put('/produtos', (req,res) => {
     // #swagger.tags = ['Produtos']
     // #swagger.summary = "Endpoint para atualizar produtos"
+        /* #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/components/schemas/produtos"
+                    }
+                }
+            }
+        }
+    */
     ctrl.alterar(req,res);
 })
 

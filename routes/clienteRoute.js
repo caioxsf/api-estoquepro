@@ -8,19 +8,41 @@ let authMiddleware = new AuthMiddleware();
 
 router.get('/clientes', (req,res) => {
     // #swagger.tags = ['Clientes']
-    // #swagger.summary = "Endpoint para listar todos os clientes"
+    // #swagger.summary = "Endpoint para listar todos os clientes" 
     ctrl.listar(req,res);
 });
 
 router.post('/clientes', (req,res) => {
     // #swagger.tags = ['Clientes']
     // #swagger.summary = "Endpoint para cadastrar um cliente"
+        /* #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/components/schemas/clientes"
+                    }
+                }
+            }
+        }
+    */
     ctrl.cadastrar(req,res);
 });
 
 router.put('/clientes', (req,res) => {
     // #swagger.tags = ['Clientes']
     // #swagger.summary = "Endpoint para alterar um cliente"
+     /* #swagger.requestBody = {
+            required: true,
+            content: {
+                "application/json": {
+                    schema: {
+                        $ref: "#/components/schemas/clientes"
+                    }
+                }
+            }
+        }
+    */ 
     ctrl.alterar(req,res);
 });
 

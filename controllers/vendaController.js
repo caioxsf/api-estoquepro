@@ -40,8 +40,10 @@ export default class vendaController {
                     cont++;
                 } else 
                     res.status(400).json({msg: "Estoque do produto insuficiente!"});
-            } else 
+            } else {
+                await this.#vendaRepo.deletarVendaGerada(vendaId);
                 res.status(404).json({msg: "Código do produto inexistente!"});
+            } 
         }  
         if (cont > 0)
             return res.status(201).json({ msg: "Pedido cadastrado com sucesso!" })

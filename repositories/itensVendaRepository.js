@@ -15,6 +15,7 @@ export default class itensVendaRepository {
         return resultado;
     }
 
+
     async verificarCodigoDoProduto(id) {
         let sql = `SELECT * FROM produtos WHERE prod_id = ?`;
         let parametros = [id];
@@ -111,7 +112,7 @@ export default class itensVendaRepository {
     // }
 
     async atualizarEstoque(quantidade, produto_id) {
-        let sql = `UPDATE produtos set prod_estoque = prod_estoque - ? WHERE prod_id = ?`;
+        let sql = `UPDATE produtos set prod_estoque = prod_estoque - ? WHERE prod_id = ? AND prod_estoque > 0`;
         let parametros = [quantidade, produto_id];
         let resultado = await this.#banco.ExecutaComandoNonQuery(sql,parametros);
         return resultado;

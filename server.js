@@ -5,6 +5,7 @@ import cors from 'cors'
 import clienteRoute from './routes/clienteRoute.js';
 import produtoRoute from './routes/produtoRoute.js'
 import vendaRoute from './routes/vendaRoute.js'
+import relatorioRoute from './routes/relatorioRoute.js';
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -23,6 +24,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(outputJson));
 app.use('/', catchErrors(clienteRoute));
 app.use('/', catchErrors(produtoRoute));
 app.use('/', catchErrors(vendaRoute));
+app.use('/', catchErrors(relatorioRoute))
 
 app.use(errorHandler);
 

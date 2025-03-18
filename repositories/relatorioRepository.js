@@ -1,5 +1,6 @@
 import Database from "../db/database.js";
 import itensVendaEntity from "../entities/itensVendaEntity.js"
+import produtoEntity from "../entities/produtoEntity.js";
 
 export default class RelatorioRepository {
 
@@ -31,8 +32,56 @@ export default class RelatorioRepository {
                 subtotal: parseFloat(row['item_subtotal'])  
             });
         }
-        lista.unshift({quantidade: resultado.length})
+        // lista.unshift({quantidade: resultado.length})
         
+        return lista;
+    }
+
+    async RelatorioProdutoEstoqueBaixo() {
+        let sql = `SELECT * FROM produtos WHERE prod_estoque <= 10`;
+        let rows = await this.#banco.ExecutaComando(sql);
+        let lista = [];
+        for(let i=0;i<rows.length;i++) {
+            let row = rows[i];
+            lista.push(new produtoEntity(
+                row['prod_id'],
+                row['prod_nome'],
+                row['prod_preco'],
+                row['prod_estoque']
+            ))
+        }
+        return lista;
+    }
+
+    async RelatorioProdutoEstoqueMedio() {
+        let sql = `SELECT * FROM produtos WHERE prod_estoque > 10 AND prod_estoque <= 50`;
+        let rows = await this.#banco.ExecutaComando(sql);
+        let lista = [];
+        for(let i=0;i<rows.length;i++) {
+            let row = rows[i];
+            lista.push(new produtoEntity(
+                row['prod_id'],
+                row['prod_nome'],
+                row['prod_preco'],
+                row['prod_estoque']
+            ))
+        }
+        return lista;
+    }
+
+    async RelatorioProdutoEstoqueAlto() {
+        let sql = `SELECT * FROM produtos WHERE prod_estoque > 50`;
+        let rows = await this.#banco.ExecutaComando(sql);
+        let lista = [];
+        for(let i=0;i<rows.length;i++) {
+            let row = rows[i];
+            lista.push(new produtoEntity(
+                row['prod_id'],
+                row['prod_nome'],
+                row['prod_preco'],
+                row['prod_estoque']
+            ))
+        }
         return lista;
     }
     

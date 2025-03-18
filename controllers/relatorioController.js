@@ -16,4 +16,28 @@ export default class RelatorioController {
             return res.status(201).json(listaRelatorio);
         }
     }
+
+    async RelatorioProdutoEstoqueBaixo(req,res) {
+        let listaRelatorio = await this.#RelatorioRepo.RelatorioProdutoEstoqueBaixo();
+        if(listaRelatorio.length === null || listaRelatorio.length == undefined || listaRelatorio.length === 0)
+            return res.status(404).json({msg: "Nenhum produto com estoque baixo foi encontrado!"});
+        else
+            return res.status(201).json(listaRelatorio);
+    }
+
+    async RelatorioProdutoEstoqueMedio(req,res) {
+        let listaRelatorio = await this.#RelatorioRepo.RelatorioProdutoEstoqueMedio();
+        if(listaRelatorio.length === null || listaRelatorio.length == undefined || listaRelatorio.length === 0)
+            return res.status(404).json({msg: "Nenhum produto com estoque medio foi encontrado!"});
+        else
+            return res.status(201).json(listaRelatorio);
+    }
+
+    async RelatorioProdutoEstoqueAlto(req,res) {
+        let listaRelatorio = await this.#RelatorioRepo.RelatorioProdutoEstoqueAlto();
+        if(listaRelatorio.length === null || listaRelatorio.length == undefined || listaRelatorio.length === 0)
+            return res.status(404).json({msg: "Nenhum produto com estoque alto foi encontrado!"});
+        else
+            return res.status(201).json(listaRelatorio);
+    }
 }

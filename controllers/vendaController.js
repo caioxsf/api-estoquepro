@@ -41,6 +41,7 @@ export default class vendaController {
                     await this.#itensVendaRepo.atualizarEstoque(entidade.quantidade, entidade.produto_id);
                     await this.#itensVendaRepo.cadastrarVenda(entidade);
                     cont++;
+<<<<<<< HEAD
                 } else {
                     await this.#vendaRepo.deletarVendaGerada(vendaId);
                     return res.status(400).json({msg: "Estoque do produto insuficiente!"});
@@ -49,6 +50,13 @@ export default class vendaController {
             } else {
                 await this.#vendaRepo.deletarVendaGerada(vendaId);
                 return res.status(404).json({msg: "Código do produto inexistente!"});
+=======
+                } else 
+                    res.status(400).json({msg: "Estoque do produto insuficiente!"});
+            } else {
+                await this.#vendaRepo.deletarVendaGerada(vendaId);
+                res.status(404).json({msg: "Código do produto inexistente!"});
+>>>>>>> 783c921bf4600d3bed30090125887db2fc66fd38
             } 
         }  
         if (cont > 0)

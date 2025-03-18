@@ -26,15 +26,19 @@ export default class vendaController {
 
             entidade.produto_id = parseInt(produto_id);
             if(await this.#itensVendaRepo.verificarCodigoDoProduto(produto_id)) {
-                entidade.venda_id = vendaId;
-                entidade.quantidade = parseInt(quantidade);
-                entidade.preco = parseFloat(preco);
-                entidade.subtotal = entidade.quantidade * entidade.preco;
-                await this.#itensVendaRepo.atualizarEstoque(entidade.quantidade, entidade.produto_id);
-                await this.#itensVendaRepo.cadastrarVenda(entidade);
-                cont++;
+                if(await this.#itensVendaRepo.verificarEstoqueProduto(entidade.produto_id, entidade.quantidade))
+                {
+                    entidade.venda_id = vendaId;
+                    entidade.quantidade = parseInt(quantidade);
+                    entidade.preco = parseFloat(preco);
+                    entidade.subtotal = entidade.quantidade * entidade.preco;
+                    await this.#itensVendaRepo.atualizarEstoque(entidade.quantidade, entidade.produto_id);
+                    await this.#itensVendaRepo.cadastrarVenda(entidade);
+                    cont++;
+                } else 
+                    res.status(400).json({msg: "Estoque do produto insuficiente!"});
             } else 
-                return res.status(404).json({msg: "Código do produto inexistente!"});
+                res.status(404).json({msg: "Código do produto inexistente!"});
         }  
         if (cont > 0)
             return res.status(201).json({msg: "Pedido cadastrado com sucesso!"})

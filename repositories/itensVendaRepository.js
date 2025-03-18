@@ -117,4 +117,10 @@ export default class itensVendaRepository {
         return resultado;
     }
 
+    async verificarEstoqueProduto(produto_id, prod_estoque){
+        let sql = `SELECT * FROM produtos WHERE prod_id = ? AND prod_estoque > 0`;
+        let parametros = [produto_id, prod_estoque];
+        let resultado = await this.#banco.ExecutaComando(sql,parametros);
+        return resultado; 
+    }
 }

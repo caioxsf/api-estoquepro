@@ -4,7 +4,7 @@ const doc = {
     info: {
         title: "API RESTful",
     },
-    host: 'http://152.67.55.245/',
+    host: '152.67.55.245',
     components: {
         schemas: {
             clientes: {

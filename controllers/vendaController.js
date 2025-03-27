@@ -16,7 +16,7 @@ export default class vendaController {
         this.#produtoRepository = new produtoRepository();
     }
 
-    async cadastrarVenda(req, res) {
+   async cadastrarVenda(req, res) {
 
         // Gera a venda
         let vendaId = await this.#vendaRepo.gerarVenda();
@@ -25,40 +25,33 @@ export default class vendaController {
         for (let i = 0; i < req.body.length; i++) {
             const entidade = new this.#itensVendaEntity();
             let { quantidade, produto_id } = req.body[i];
-
-            let resultado = await this.#produtoRepository.buscarPrecoDoProduto(produto_id)
-            let preco = resultado[0].prod_preco;
-
+            //
             // Verifica o código do produto pra ver se ele realmente existe
             entidade.produto_id = parseInt(produto_id);
-            if(await this.#itensVendaRepo.verificarCodigoDoProduto(produto_id)) {
-                if(await this.#itensVendaRepo.verificarEstoqueProduto(entidade.produto_id, entidade.quantidade))
-                {
-                    entidade.venda_id = vendaId;
-                    entidade.quantidade = parseInt(quantidade);
-                    entidade.preco = parseFloat(preco);
-                    entidade.subtotal = entidade.quantidade * preco;
+            if (await this.#itensVendaRepo.verificarCodigoDoProduto(produto_id)) {
+                // Busca o preço do produto pra fazer o subtotal direto no banco de dados
+                let resultado = await this.#produtoRepository.buscarPrecoDoProduto(produto_id)
+                let preco = resultado[0].prod_preco;
+
+                entidade.venda_id = vendaId;
+                entidade.quantidade = parseInt(quantidade);
+                entidade.preco = parseFloat(preco);
+                entidade.subtotal = entidade.quantidade * preco;
+                // Verifica se o estoque do produto é maior que a quantidade desejada pelo cliente
+                // Se o retorno for diferente de null ele atualiza o estoque e cadastra a venda
+                if (await this.#produtoRepository.verificarEstoqueDoProduto(produto_id, quantidade)) {
                     await this.#itensVendaRepo.atualizarEstoque(entidade.quantidade, entidade.produto_id);
                     await this.#itensVendaRepo.cadastrarVenda(entidade);
                     cont++;
-<<<<<<< HEAD
                 } else {
-                    await this.#vendaRepo.deletarVendaGerada(vendaId);
-                    return res.status(400).json({msg: "Estoque do produto insuficiente!"});
+                    return res.status(400).json({ msg: `Estoque do produto ${produto_id} insuficiente!` });
                 }
-                    
             } else {
-                await this.#vendaRepo.deletarVendaGerada(vendaId);
-                return res.status(404).json({msg: "Código do produto inexistente!"});
-=======
-                } else 
-                    res.status(400).json({msg: "Estoque do produto insuficiente!"});
-            } else {
-                await this.#vendaRepo.deletarVendaGerada(vendaId);
-                res.status(404).json({msg: "Código do produto inexistente!"});
->>>>>>> 783c921bf4600d3bed30090125887db2fc66fd38
-            } 
-        }  
+                // Deleta a ultima venda gerada caso o código do produto for inexistente
+                await this.#vendaRepo.deletarVendaGerada(vendaId)
+                return res.status(404).json({ msg: "Código do produto inexistente!" });
+            }
+        }
         if (cont > 0)
             return res.status(201).json({ msg: "Pedido cadastrado com sucesso!" })
         else {
